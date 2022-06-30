@@ -1,0 +1,20 @@
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% block content %}
+
+
+<p class="div">Количество постов {{ posts |length  }}</p>
+
+
+
+{% for post in posts %}
+
+
+<div class="">
+      <p>  {{ post.date_time_create|date:'M d Y' }}</p>
+<h2><a href="{% url 'news_single' post.pk %}">{{ post.title | censor }}</a></h2>
+  <p>{{ post.body|truncatewords:20 | censor   }}</p>
+</div>
+{% endfor %}
+
+{% endblock content %}
